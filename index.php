@@ -9,8 +9,25 @@
 		<!--centrar el texto-->
 		<div align=center>
 		<u><strong><h1>"lA PAGINA DE DIEGO BORQUEZ "</h1></strong></u>
-		
 		<hr>
+<?php 
+session_start();
+if(isset($_POST['Ingresar'])){
+$ramo=$_POST['Ramo'];
+$profesor=$_POST['Profesor'];
+$prueba=$_POST['Prueba'];
+$universidad=$_POST['Universidad'];
+$facultad=$_POST['Facultad'];
+$_SESSION['Ramo']=$ramo;
+$_SESSION['Profesor']=$profesor;
+$_SESSION['Prueba']=$prueba;
+$_SESSION['Universidad']=$universidad;
+$_SESSION['Facultad']=$facultad;
+header('location: lista.php');
+    }
+    
+?>
+ 
 		<form method="POST" action="index.php" >
 		<table>
 		<tr>
@@ -21,8 +38,6 @@
 		<td><h4>Facultad</h4></td>
 		</tr>
   		<tr>
- 
-
 <?php 
   /*Conexion a la bd*/
 $link = mysql_connect('localhost', 'root', '');
@@ -32,7 +47,7 @@ $sql=mysql_query($dat);
  ?>
 
 <td><select name="Ramo">
-<option selected="selected" value="vacio"></option>
+<option selected="selected" value=""></option>
  <?php
  while($lista=mysql_fetch_array($sql))
    echo "<option  value='".$lista["Ramo"]."'>".$lista["Ramo"]."</option>"; 
@@ -46,7 +61,7 @@ $dat="SELECT DISTINCT Profesor FROM Apoyo";
 $sql=mysql_query($dat);
  ?>
 <td><select name="Profesor">
-<option selected="selected" value="vacio"></option>
+<option selected="selected" value=""></option>
  <?php
  while($lista1=mysql_fetch_array($sql))
    echo "<option  value='".$lista1["Profesor"]."'>".$lista1["Profesor"]."</option>"; 
@@ -60,7 +75,7 @@ $dat="SELECT DISTINCT Prueba FROM Apoyo";
 $sql=mysql_query($dat);
  ?>
 <td><select name="Prueba">
-<option selected="selected" value="vacio"></option>
+<option selected="selected" value=""></option>
  <?php
  while($lista=mysql_fetch_array($sql))
    echo "<option  value='".$lista["Prueba"]."'>".$lista["Prueba"]."</option>"; 
@@ -74,7 +89,7 @@ $dat="SELECT DISTINCT Universidad FROM Apoyo";
 $sql=mysql_query($dat);
  ?>
 <td><select name="Universidad">
-<option selected="selected" value="vacio"></option>
+<option selected="selected" value=""></option>
  <?php
  while($lista=mysql_fetch_array($sql))
    echo "<option  value='".$lista["Universidad"]."'>".$lista["Universidad"]."</option>"; 
@@ -88,8 +103,7 @@ $dat="SELECT DISTINCT Facultad FROM Apoyo";
 $sql=mysql_query($dat);
  ?>
 <td><select name="Facultad">
-<option selected="selected" value="vacio"></option>
-<option selected="selected" value="vacio"></option>
+<option selected="selected" value=""></option>
  <?php
  while($lista=mysql_fetch_array($sql))
    echo "<option  value='".$lista["Facultad"]."'>".$lista["Facultad"]."</option>"; 
@@ -100,12 +114,12 @@ $sql=mysql_query($dat);
     <td><input type="text" name="Universidad" placeholder=" Universidad" /> <br/></td>
     <td><input type="text" name="Facultad" placeholder=" Facultad" /> <br/></td>-->
     <td><input type="submit" value="Ingresar" name='Ingresar' /></td>
-  		</tr>
-  				
+  		</tr>  				
 		</table>		 		
 		</form>
 		<form method="POST" action="subir.php">
 		<input type="submit" value="subir">
-		</form>			
+		</form>	
+	
 	</body>
 </html>
