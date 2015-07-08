@@ -11,19 +11,63 @@
 		<hr>
 <?php 
 session_start();
-if(isset($_POST['Ingresar'])){
-$ramo=$_POST['Ramo'];
-$profesor=$_POST['Profesor'];
-$prueba=$_POST['Prueba'];
-$universidad=$_POST['Universidad'];
-$facultad=$_POST['Facultad'];
-$_SESSION['Ramo']=$ramo;
-$_SESSION['Profesor']=$profesor;
-$_SESSION['Prueba']=$prueba;
-$_SESSION['Universidad']=$universidad;
-$_SESSION['Facultad']=$facultad;
-header('location: lista.php');
-    }
+$ramo=$_SESSION['Ramo'];
+$profesor=$_SESSION['Profesor'];
+$prueba=$_SESSION['Prueba'];
+$universidad=$_SESSION['Universidad'];
+$facultad=$_SESSION['Facultad'];
+if($ramo!= '' and $profesor != '' and $prueba != '' and $universidad!='' and $facultad!=''){
+$link = mysql_connect('localhost', 'root', '');
+$db_selected = mysql_select_db('apoyouniversitario',$link);
+$query = "SELECT Ramo,Profesor,Prueba,Universidad, Facultad,Prueba " .
+      "FROM Apoyo " .
+	  "WHERE Ramo = '$ramo' and Profesor = '$profesor' and Prueba = '$prueba' and Universidad= '$universidad' and Facultad = '$facultad'";
+$result = mysql_query($query); 
+while($row = mysql_fetch_array($result))
+  {
+  ?>
+  <tr>
+  <?php
+    echo "<tr><td width=\"25%\"><font face=\"verdana\">" . 
+	    $row["Ramo"] . "</font></td>";
+    echo "<td width=\"25%\"><font face=\"verdana\">" . 
+	    $row["Profesor"] . "</font></td>";
+    echo "<td width=\"25%\"><font face=\"verdana\">" . 
+	    $row["Universidad"] . "</font></td>";
+	echo "<td width=\"25%\"><font face=\"verdana\">" . 
+	    $row["Prueba"] . "</font></td>";
+    echo "<td width=\"25%\"><font face=\"verdana\">" . 
+	    $row["Facultad"]. "</font></td></tr>";    
+    ?>
+    </tr>
+    <?php
+   
+  }
+}
+if($profesor==''){
+$link = mysql_connect('localhost', 'root', '');
+$db_selected = mysql_select_db('apoyouniversitario',$link);
+$query = "SELECT Ramo,Profesor,Prueba,Universidad, Facultad,Prueba " .
+      "FROM Apoyo " .
+	  "WHERE Ramo = '$ramo' and Prueba = '$prueba' and Universidad= '$universidad' and Facultad = '$facultad'";
+$result = mysql_query($query); 
+while($row = mysql_fetch_array($result))
+  {
+    echo "<tr><td width=\"25%\"><font face=\"verdana\">" . 
+	    $row["Ramo"] . "</font></td>";
+    echo "<td width=\"25%\"><font face=\"verdana\">" . 
+	    $row["Profesor"] . "</font></td>";
+    echo "<td width=\"25%\"><font face=\"verdana\">" . 
+	    $row["Universidad"] . "</font></td>";
+	echo "<td width=\"25%\"><font face=\"verdana\">" . 
+	    $row["Prueba"] . "</font></td>";
+    echo "<td width=\"25%\"><font face=\"verdana\">" . 
+	    $row["Facultad"]. "</font></td></tr>";    
+    
+  }
+}
+
+    
     
 ?>
  

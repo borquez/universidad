@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-07-2015 a las 10:25:34
+-- Tiempo de generación: 09-07-2015 a las 00:44:00
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -27,15 +27,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `Apoyo` (
-  `Profesor` varchar(45) CHARACTER SET utf8 NOT NULL,
-  `Ramo` varchar(45) CHARACTER SET utf8 NOT NULL,
-  `Prueba` varchar(45) CHARACTER SET utf8 NOT NULL,
-  `Universidad` varchar(45) CHARACTER SET utf8 NOT NULL,
-  `Facultad` varchar(45) CHARACTER SET utf8 NOT NULL,
-  `Pauta` varchar(45) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`Profesor`),
-  UNIQUE KEY `Ramo` (`Ramo`,`Prueba`,`Universidad`,`Facultad`,`Pauta`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idapoyo` int(11) NOT NULL AUTO_INCREMENT,
+  `Profesor` varchar(50) NOT NULL,
+  `Ramo` varchar(45) NOT NULL,
+  `Prueba` varchar(45) NOT NULL,
+  `Universidad` varchar(45) NOT NULL,
+  `Facultad` varchar(45) NOT NULL,
+  `Pauta` varchar(45) NOT NULL,
+  PRIMARY KEY (`idapoyo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -45,8 +45,8 @@ CREATE TABLE IF NOT EXISTS `Apoyo` (
 
 CREATE TABLE IF NOT EXISTS `Usuarios` (
   `Nombre` varchar(45) CHARACTER SET utf8 NOT NULL,
-  `Contraseña` varchar(45) CHARACTER SET utf8 NOT NULL,
-  UNIQUE KEY `Nombre` (`Nombre`,`Contraseña`)
+  `Contrasena` varchar(45) CHARACTER SET utf8 NOT NULL,
+  UNIQUE KEY `Nombre` (`Nombre`,`Contrasena`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

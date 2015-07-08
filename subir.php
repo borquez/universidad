@@ -55,7 +55,7 @@ $universidad=$_POST['Universidad'];
 $facultad=$_POST['Facultad'];
 $link = mysql_connect('localhost', 'root', '');
 $db_selected = mysql_select_db('apoyouniversitario',$link);
-$register = mysql_query("INSERT INTO Apoyo VALUES('$profesor','$ramo','1','$universidad','$facultad','1')");
+$register = mysql_query("INSERT INTO Apoyo VALUES(NULL, '$profesor','$ramo','1','$universidad','$facultad','1')");
 echo 'done';
 }
 
