@@ -1,10 +1,6 @@
-abdhahsdjbkasdjhajsdhjasd
-
-
-
-
-
-asdasdasdasd
-a
-
-asdasdasdasd
+                        Ramo:<br />
+                    <select name="programa">    
+                        <option value="Opti" selected="selected">Opti</option>
+                        <option value="Proba">Proba</option>
+                        <option value="Marketing">Marketing</option>
+                    </select>
